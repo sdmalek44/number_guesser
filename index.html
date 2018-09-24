@@ -1,0 +1,23 @@
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/index.css">
+  </head>
+  <body>
+    <nav>Number Guesser</nav>
+    <form>
+      <input id="guess" name="guess" value="Enter Your Guess">
+      <button id="guess-button" type="button" name="guess">Guess</button>
+      <button type="button" name="clear">Clear</button>
+      <div id="recent" class="recent-guess"></div>
+      <button type="button" name="reset">Reset</button>
+    </form>
+  </body>
+  <script type="text/javascript">
+    document.getElementById("guess-button").addEventListener("click", function() {
+      var guess = parseInt(document.getElementById("guess").value)
+      document.getElementById("recent").innerHTML = guess;
+    })
+  </script>
+</html>
