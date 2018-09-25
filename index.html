@@ -2,23 +2,32 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/index.css">
   </head>
   <body>
-    <nav>Number Guesser</nav>
-    <form>
-      <input id="min" type="number" name="min" value="1">
-      <input id="max" type="number" name="max" value="100">
-      <input id="guess" name="guess" value="Enter Your Guess">
-      <button id="guess-button" type="button" name="guess">Guess</button>
-      <button id="clear" type="button" name="clear">Clear</button>
-      <div id="your-last" class=""></div>
-      <div id="recent" class="recent-guess"></div>
-      <div id="message" class=""></div>
-      <div id="winner" class=""></div>
-
-      <button id="reset" type="button" name="reset">Reset</button>
-    </form>
+    <nav id="nav"><div class="num">Number</div><div class="guesser">Guesser</div></nav>
+    <section id="middle">
+      <form id="guess-form">
+        <div class="min-max">
+          <input id="min" class="params" type="number" name="min" value="1">
+          <div class="desc">to</div>
+          <input id="max" class="params" type="number" name="max" value="100">
+        </div>
+        <input id="guess" name="guess" value="Enter Your Guess">
+        <div class="guess-clear">
+          <button id="guess-button" class="buttons" type="button" name="guess">Guess</button>
+          <button id="clear" class="buttons" type="button" name="clear">Clear</button>
+        </div>
+        <div class="results">
+          <div id="your-last" class="text"></div>
+          <div id="recent" class="recent-guess text"></div>
+          <div id="message" class="text"></div>
+          <div id="winner" class="text"></div>
+        </div>
+        <button id="reset" class="reset" type="button" name="reset">Reset</button>
+      </form>
+    </section>
   </body>
   <script type="text/javascript">
     function getRandomNumber(min, max) {
@@ -57,6 +66,7 @@
     reset.addEventListener("click", function() {
       document.getElementById("min").value = 1
       document.getElementById("max").value = 100
+      document.getElementById("winner").innerHTML = "";
       answer = getRandomNumber(min - 10, max + 10)
       yourLast.innerHTML = "";
       recent.innerHTML = "";
@@ -82,11 +92,11 @@
       } else if (guess < answer) {
         message = "That is too low"
       } else if (guess === answer) {
-        message = "BOOM! You got that one. A new number has been generaged.";
+        message = "BOOM! You got that one.";
         document.getElementById("min").value = min - 10
         document.getElementById("max").value = max + 10
         answer = getRandomNumber(min - 10, max + 10)
-        document.getElementById("winner").innerHTML = `The range has been increased. Pick an number between ${min - 10} and ${max + 10}`
+        document.getElementById("winner").innerHTML = `Now pick an number between ${min - 10} and ${max + 10}`
       } else {
         yourLast.innerHTML = "Your last guess was not a number";
         guess = ""

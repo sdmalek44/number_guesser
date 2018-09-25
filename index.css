@@ -1,0 +1,131 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+#nav {
+  font-family: 'Open Sans';
+  height: 120px;
+  background-color: #404041;
+  color: #ED458B;
+  font-size: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.num {
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+.guesser {
+  font-family: 'Open Sans';
+  font-weight: lighter;
+  color: #E6E7E8;
+  margin-left: 8px;
+}
+
+#middle {
+  height: 80%;
+  display: flex;
+  justify-content: center;
+}
+
+#guess-form {
+  width: 36%;
+  display: flex;
+  flex-direction: column;
+}
+
+button:disabled,
+button[disabled]{
+  background-color: #D0D2D3;
+  color: #FFFFFF;
+}
+
+.text {
+  text-align: center;
+}
+
+.min-max {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+.guess-clear {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.desc {
+  width: 33%;
+  text-align: center;
+  font-size: 30px;
+  color: #929497;
+  font-family: 'Open Sans';
+}
+
+.params {
+  width: 33%;
+  text-align: center;
+  height: 55px;
+  font-size: 35px;
+  border: 3px solid #D0D2D3;
+  color: #929497;
+  font-family: 'Open Sans';
+}
+
+#guess {
+  height: 55px;
+  border: 3px solid #D0D2D3;
+  color: #929497;
+  font-family: 'Open Sans';
+  font-size: 30px;
+  padding-left: 8px;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  width: 40%;
+  text-align: center;
+  height: 55px;
+  font-size: 30px;
+  background-color: #929497;
+  font-family: 'Open Sans';
+  border-radius: 25px;
+  color: #FFFFFF;
+
+}
+
+.reset {
+  width: 100%;
+  text-align: center;
+  height: 55px;
+  font-size: 30px;
+  background-color: #929497;
+  font-family: 'Open Sans';
+  border-radius: 25px;
+  color: #FFFFFF;
+  margin-top: 30px;
+
+}
+
+#recent {
+  font-size: 180px;
+  color: #ED458B;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  color: #929497;
+  font-family: 'Open Sans';
+}
