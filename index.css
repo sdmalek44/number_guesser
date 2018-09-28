@@ -37,11 +37,16 @@ body {
   flex-direction: column;
 }
 
+button:hover {
+  background-color: #EB008B;
+}
+
 button:disabled,
 button[disabled]{
   background-color: #D0D2D3;
   color: #FFFFFF;
 }
+
 
 .text {
   text-align: center;
