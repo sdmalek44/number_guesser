@@ -15,7 +15,7 @@ the range of possible numbers is increased. The user also has the ability to set
 ### Setup  
 * Fork this Repo  
 * Clone it down on your machine  
-* In console, move into cloned directory  
-* Start local server in console  
+* In console, navigate to inside of cloned directory  
+* Start local server
 * Play game in browser
 
