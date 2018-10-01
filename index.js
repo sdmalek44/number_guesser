@@ -1,9 +1,6 @@
-function getRandomNumber(min, max) {
-  return parseInt(Math.random() * (max - min) + min)
-};
-var min;
-var max;
-var answer;
+var min,
+    max,
+    answer;
 var guessField = document.getElementById("guess")
 var clear = document.getElementById("clear")
 var guessButton = document.getElementById("guess-button")
@@ -13,7 +10,29 @@ var messageField = document.getElementById("message")
 var reset = document.getElementById("reset")
 reset.disabled = true;
 
-guessField.addEventListener("keyup", function() {
+function getRandomNumber(min, max) {
+  return parseInt(Math.random() * (max - min) + min)
+};
+
+function updateGame() {
+  yourLast.innerHTML = "Your last guess was";
+  document.getElementById("winner").innerHTML = "";
+  min = parseInt(document.getElementById("min").value);
+  max = parseInt(document.getElementById("max").value);
+  if (typeof answer === "undefined" || answer < min || answer > max ) {
+    answer = getRandomNumber(min, max)
+  }
+}
+
+function winnerReset() {
+  document.getElementById("min").value = min - 10
+  document.getElementById("max").value = max + 10
+  answer = getRandomNumber(min - 10, max + 10)
+  document.getElementById("winner").innerHTML = `Now pick an number between ${min - 10} and ${max + 10}`
+}
+
+
+function updateDisabled() {
   if (guessField.value === "") {
     clear.disabled = true;
     guessButton.disabled = true;
@@ -21,17 +40,17 @@ guessField.addEventListener("keyup", function() {
     clear.disabled = false;
     guessButton.disabled = false;
   }
-})
+}
 
-clear.addEventListener("click", function() {
+function clearInput() {
   if ( guessField.value !== "" ) {
     guessField.value = "";
     guessButton.disabled = true;
     clear.disabled = true;
   }
-});
+}
 
-reset.addEventListener("click", function() {
+function resetGame() {
   document.getElementById("min").value = 1
   document.getElementById("max").value = 100
   document.getElementById("winner").innerHTML = "";
@@ -41,17 +60,11 @@ reset.addEventListener("click", function() {
   messageField.innerHTML = "";
   guess.value = "Enter Your Guess";
   reset.disabled = true;
-})
+}
 
-document.getElementById("guess-button").addEventListener("click", function() {
-  yourLast.innerHTML = "Your last guess was";
-  document.getElementById("winner").innerHTML = "";
-  min = parseInt(document.getElementById("min").value);
-  max = parseInt(document.getElementById("max").value);
+function guessResponse() {
   var guess = parseInt(document.getElementById("guess").value)
-  if (typeof answer === "undefined" || answer < min || answer > max ) {
-    answer = getRandomNumber(min, max)
-  }
+  updateGame()
   var message;
   if (guess < min || guess > max ) {
     message = `That is not a number between ${min} and ${max}. Try again`
@@ -61,10 +74,7 @@ document.getElementById("guess-button").addEventListener("click", function() {
     message = "That is too low"
   } else if (guess === answer) {
     message = "BOOM! You got that one.";
-    document.getElementById("min").value = min - 10
-    document.getElementById("max").value = max + 10
-    answer = getRandomNumber(min - 10, max + 10)
-    document.getElementById("winner").innerHTML = `Now pick an number between ${min - 10} and ${max + 10}`
+    winnerReset();
   } else {
     yourLast.innerHTML = "Your last guess was not a number";
     guess = ""
@@ -73,4 +83,12 @@ document.getElementById("guess-button").addEventListener("click", function() {
   recent.innerHTML = guess;
   messageField.innerHTML = message;
   reset.disabled = false;
-})
+}
+
+guessField.addEventListener("keyup", updateDisabled)
+
+clear.addEventListener("click", clearInput);
+
+reset.addEventListener("click", resetGame);
+
+document.getElementById("guess-button").addEventListener("click", guessResponse);
